@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aplicación de lista de tareas">
+  <title>Mis Tareas · To-Do List</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✅</text></svg>">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Mis Tareas</h1>
+          <p class="subtitle">Organiza tu día, una tarea a la vez</p>
+        </div>
+      </div>
+
+      <div class="stats" aria-label="Resumen de tareas">
+        <div class="stat">
+          <span id="stat-total">0</span>
+          <small>Totales</small>
+        </div>
+        <div class="stat stat-pending">
+          <span id="stat-pending">0</span>
+          <small>Pendientes</small>
+        </div>
+        <div class="stat stat-done">
+          <span id="stat-done">0</span>
+          <small>Completadas</small>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="card composer" aria-labelledby="composer-title">
+        <h2 id="composer-title">Nueva tarea</h2>
+        <form id="task-form" novalidate>
+          <div class="field">
+            <label for="title">Título <span class="required">*</span></label>
+            <input id="title" name="title" type="text" maxlength="120" required
+                   autocomplete="off" placeholder="Ej. Preparar la presentación">
+          </div>
+          <div class="field">
+            <label for="description">Descripción <span class="optional">(opcional)</span></label>
+            <textarea id="description" name="description" rows="2" maxlength="500"
+                      placeholder="Añade algunos detalles..."></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit" id="submit-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                 stroke-linecap="round" aria-hidden="true">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+            Añadir tarea
+          </button>
+        </form>
+      </section>
+
+      <section class="list-section" aria-labelledby="list-title">
+        <div class="toolbar">
+          <h2 id="list-title" class="sr-only">Lista de tareas</h2>
+          <div class="filters" role="group" aria-label="Filtrar tareas">
+            <button type="button" class="filter is-active" data-filter="all">Todas</button>
+            <button type="button" class="filter" data-filter="active">Pendientes</button>
+            <button type="button" class="filter" data-filter="completed">Completadas</button>
+          </div>
+          <span class="list-count" id="list-count"></span>
+        </div>
+
+        <div id="task-list" class="task-list" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>API REST To-Do List · Spring Boot</span>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
